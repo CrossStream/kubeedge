@@ -42,4 +42,5 @@ ENV install_dir /usr/local/opt/${project}
 COPY --from=kubeedge-builder ${install_dir} ${install_dir}
 
 # TODO
+ENV project_dir /usr/local/src/${project}/
 COPY --from=kubeedge-builder ${project_dir}/../${project}_* ${install_dir}/debian
