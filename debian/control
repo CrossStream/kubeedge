@@ -1,7 +1,7 @@
 Source: kubeedge
 Section: unknown
 Priority: optional
-Maintainer: unknown <rzr@22a332bca5b4>
+Maintainer: Philippe Coval <p.coval@samsung.com>
 Build-Depends: debhelper (>= 11)
 Standards-Version: 4.1.3
 Homepage: <insert the upstream URL, if relevant>
