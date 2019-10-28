@@ -24,7 +24,7 @@ COPY . ${project_dir}
 RUN echo "#log: ${project}: Buidling sources" \
   && set -x \
   && git archive HEAD .  | xz - > ../kubeedge_0.0.0.orig.tar.xz \
-  && debuild -S || { echo 'TODO' | dpkg-source --commit ||:  } \
+  && debuild -S || { echo 'TODO' | dpkg-source --commit ;} ||: \
   && cp /tmp/kubeedge_0.0.0-1.diff* . \
   && debuild -S \  
   && debuild \
