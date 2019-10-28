@@ -24,7 +24,8 @@ COPY . ${project_dir}
 RUN echo "#log: ${project}: Buidling sources" \
   && set -x \
   && git archive HEAD .  | xz - > ../kubeedge_0.0.0.orig.tar.xz \
-  && debuild -S \
+  && debuild -S || { echo 'TODO' | dpkg-source --commit ; } \
+  && debuild -S \  
   && debuild \
   && mkdir -p tmp/out/debian \
   && cp -av ../${project}_ tmp/out/debian \
