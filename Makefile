@@ -1,28 +1,41 @@
+DESTDIR?=
+INSTALL_DIR?=${DESTDIR}/usr
+
 # make all builds both cloud and edge binaries
 .PHONY: all  
 ifeq ($(WHAT),)
+exes+=cloud/admission
+exes+=cloud/cloudcore
+exes+=edge/edgecore
+exes+=edgesite/edgesite
+exes+=keadm/keadm
 all:
 	cd cloud && $(MAKE)
 	cd edge && $(MAKE)
 	cd keadm && $(MAKE)
 	cd edgesite && $(MAKE)
 else ifeq ($(WHAT),cloudcore)
+exes+=cloud/cloudcore
 # make all WHAT=cloudcore
 all:
 	cd cloud && $(MAKE) cloudcore
 else ifeq ($(WHAT),admission)
+exes+=cloud/admission
 # make all WHAT=admission
 all:
 	cd cloud && $(MAKE) admission
 else ifeq ($(WHAT),edgecore)
+exes+=edge/edgecore
 all:
 # make all WHAT=edgecore
 	cd edge && $(MAKE)
 else ifeq ($(WHAT),edgesite)
+exes+=edgesite/edgesite
 all:
 # make all WHAT=edgesite
 	$(MAKE) -C edgesite
 else ifeq ($(WHAT),keadm)
+exes+=keadm/keadm
 all:
 # make all WHAT=keadm
 	cd keadm && $(MAKE)
@@ -150,3 +163,7 @@ bluetoothdevice:
 .PHONY: bluetoothdevice_lint
 bluetoothdevice_lint:
 	make -C mappers/bluetooth_mapper lint
+
+install: ${exes}
+	install -d ${INSTALL_DIR}/bin/
+	install $^ ${INSTALL_DIR}/bin/
