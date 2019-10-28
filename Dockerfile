@@ -35,8 +35,10 @@ RUN echo "#log: ${project}: Buidling sources" \
   && make install INSTALL_DIR="${install_dir}" \
   && sync
 
-  FROM debian:buster
+FROM debian:buster
 LABEL maintainer "Philippe Coval (p.coval@samsung.com)"
 ENV project kubeedge
 ENV install_dir /usr/local/opt/${project}
-COPY --from=kubeedge-builder ${install_dir} ${install_dir} 
+COPY --from=kubeedge-builder ${install_dir} ${install_dir}
+# TODO
+COPY --form=kubeedge-builder ${project_dir}/../${project}_* ${install_dir}/debian
