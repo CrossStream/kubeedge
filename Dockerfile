@@ -1,4 +1,4 @@
-FROM golang:buster AS kubeedge-builder
+FROM golang:1.12-buster AS kubeedge-builder
 LABEL maintainer "Philippe Coval (p.coval@samsung.com)"
 ENV project kubeedge
 ENV project_dir /usr/local/src/${project}/
