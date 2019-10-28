@@ -14,18 +14,22 @@ COPY Makefile ${project_dir}
 WORKDIR ${project_dir}
 RUN echo "#log: ${project}: Preparing sources" \
   && set -x \
-  && echo make rule/setup/alpine \
+  && sudo apt-get install devscripts \
+  && ln -fs /usr/local/go/bin/go /usr/bin/ \
   && sync
 
 COPY . ${project_dir}
 RUN echo "#log: ${project}: Buidling sources" \
   && set -x \
-  && make \
-  && make install INSTALL_DIR="${install_dir}" \
+  && git archive HEAD .  | xz - > ../kubeedge_0.0.0.orig.tar.xz \
+  && debuild -S \
+  && debuild \
+  && mkdir -p tmp/out/debian \
+  && cp -av ../${project}_ tmp/out/debian \
+  && make install INSTALL_DIR="${install_dir}" 
   && sync
 
-#FROM debian:buster # TODO
-FROM golang:1.12-buster
+FROM debian:buster
 LABEL maintainer "Philippe Coval (p.coval@samsung.com)"
 ENV project kubeedge
 ENV install_dir /usr/local/opt/${project}
