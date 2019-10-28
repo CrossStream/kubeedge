@@ -24,7 +24,8 @@ RUN echo "#log: ${project}: Buidling sources" \
   && make install INSTALL_DIR="${install_dir}" \
   && sync
 
-FROM debian:buster
+#FROM debian:buster # TODO
+FROM golang:1.12-buster
 LABEL maintainer "Philippe Coval (p.coval@samsung.com)"
 ENV project kubeedge
 ENV install_dir /usr/local/opt/${project}
