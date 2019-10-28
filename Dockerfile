@@ -14,7 +14,9 @@ COPY Makefile ${project_dir}
 WORKDIR ${project_dir}
 RUN echo "#log: ${project}: Preparing sources" \
   && set -x \
-  && sudo apt-get install devscripts \
+  && sudo apt-get update  \
+  && sudo apt-get install -y \
+     devscripts \
   && ln -fs /usr/local/go/bin/go /usr/bin/ \
   && sync
 
