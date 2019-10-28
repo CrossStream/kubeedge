@@ -1,0 +1,51 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ kubeedge (0.0.0-1) unstable; urgency=medium
+ .
+   * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+Author: unknown <rzr@22a332bca5b4>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2019-10-28
+
+--- kubeedge-0.0.0.orig/vendor/k8s.io/client-go/pkg/version/base.go
++++ kubeedge-0.0.0/vendor/k8s.io/client-go/pkg/version/base.go
+@@ -55,8 +55,8 @@ var (
+ 	// NOTE: The $Format strings are replaced during 'git archive' thanks to the
+ 	// companion .gitattributes file containing 'export-subst' in this same
+ 	// directory.  See also https://git-scm.com/docs/gitattributes
+-	gitVersion   string = "v0.0.0-master+781a3a74"
+-	gitCommit    string = "781a3a74a23819aab27aad94afb7d108814a931a" // sha1 from git, output of $(git rev-parse HEAD)
++	gitVersion   string = "v0.0.0-master+$Format:%h$"
++	gitCommit    string = "$Format:%H$" // sha1 from git, output of $(git rev-parse HEAD)
+ 	gitTreeState string = ""            // state of git tree, either "clean" or "dirty"
+ 
+ 	buildDate string = "1970-01-01T00:00:00Z" // build date in ISO8601 format, output of $(date -u +'%Y-%m-%dT%H:%M:%SZ')
+--- kubeedge-0.0.0.orig/vendor/k8s.io/kubernetes/pkg/version/base.go
++++ kubeedge-0.0.0/vendor/k8s.io/kubernetes/pkg/version/base.go
+@@ -55,8 +55,8 @@ var (
+ 	// NOTE: The $Format strings are replaced during 'git archive' thanks to the
+ 	// companion .gitattributes file containing 'export-subst' in this same
+ 	// directory.  See also https://git-scm.com/docs/gitattributes
+-	gitVersion   = "v0.0.0-master+781a3a74"
+-	gitCommit    = "781a3a74a23819aab27aad94afb7d108814a931a" // sha1 from git, output of $(git rev-parse HEAD)
++	gitVersion   = "v0.0.0-master+$Format:%h$"
++	gitCommit    = "$Format:%H$" // sha1 from git, output of $(git rev-parse HEAD)
+ 	gitTreeState = ""            // state of git tree, either "clean" or "dirty"
+ 
+ 	buildDate = "1970-01-01T00:00:00Z" // build date in ISO8601 format, output of $(date -u +'%Y-%m-%dT%H:%M:%SZ')
