@@ -28,8 +28,8 @@ RUN echo "#log: ${project}: Buidling sources" \
   && mkdir -p debian/patches \
   && cp -av /tmp/kubeedge_* debian/patches/TODO.patch \
   && echo TODO.patch > debian/patches/serie \
-  && debuild -S \  
-  && debuild \
+  && debuild -S -uc -us \  
+  && debuild -uc -us \
   && mkdir -p tmp/out/debian \
   && cp -av ../${project}_ tmp/out/debian \
   && make install INSTALL_DIR="${install_dir}" \
