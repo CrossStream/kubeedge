@@ -1,3 +1,4 @@
+# .gitignore
 .DS_Store
 /_python_build
 *.pyc
@@ -6,6 +7,7 @@ __pycache__
 .idea/**
 .gradle
 .idea
+*~
 
 cloud/cloudcore.log   
 cloud/cloudcore
