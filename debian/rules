@@ -15,12 +15,13 @@ version?=$(shell [ -r debian/changelog ] \
   && dpkg-parsechangelog | grep "Version:" | sed -e "s/Version: \(.*\)-.*/\1/g" \
   || echo "0.0")
 
-tarball?=${CURDIR}/../${project}_${version}.orig.tar.gz
+tarball?=${CURDIR}/../${project}_${version}.orig.tar.xz
 
-${tarball}: rule/prep
-	 tar cvfz "$@" \
+${tarball}:
+	 tar cvfJ "$@" \
 --transform "s|^./|${project}-${version}/|" \
---exclude 'debian' --exclude-vcs \
+--exclude 'debian' \
+--exclude-vcs \
 .
 	@ls -l $@
 
