@@ -1,4 +1,4 @@
-FROM golang:1.12-buster AS kubeedge-builder
+FROM debian:buster AS kubeedge-builder
 LABEL maintainer "Philippe Coval (p.coval@samsung.com)"
 ENV project kubeedge
 ENV project_dir /usr/local/opt/${project}
@@ -17,7 +17,7 @@ RUN echo "# log: ${project}: Preparing sources" \
   && apt-get update  \
   && apt-get install -y \
      devscripts \
-  && ln -fs /usr/local/go/bin/go /usr/bin/ \
+     golang-go \
   && sync
 
 COPY . ${src_dir}/
