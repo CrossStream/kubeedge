@@ -50,6 +50,6 @@ RUN echo "# log: ${project}: Installing" \
  && set -x \
  && dpkg -i ${src_dir}/tmp/debian/${project}_*.deb \
  && echo "TODO: remove files" \
- && find ${src_dir}/debian -exec echo 'rm {} # TODO' \; \
+ && find ${src_dir}/tmp/debian -exec echo 'rm {} # TODO' \; \
  && sync
  
