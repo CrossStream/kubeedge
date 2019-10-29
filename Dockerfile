@@ -31,7 +31,7 @@ RUN echo "# log: ${project}: Buidling sources" \
   && echo TODO.patch > debian/patches/serie \
   && debuild -S -uc -us \  
   && debuild -uc -us \
-  && mkdir -p tmp/debian
+  && mkdir -p tmp/debian \
   && cp -av ../${project}_* tmp/debian \
   && make install INSTALL_DIR="${project_dir}" \
   && sync
