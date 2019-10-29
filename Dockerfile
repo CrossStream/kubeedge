@@ -28,10 +28,11 @@ RUN echo "# log: ${project}: Buidling sources" \
   && debuild -S || { echo 'TODO' | dpkg-source --commit ; } ||: \
   && mkdir -p debian/patches \
   && cp -av /tmp/${project}_* debian/patches/TODO.patch \
-  && echo TODO.patch > debian/patches/serie \
+  && echo TODO.patch > debian/patches/series \
   && debuild -S -uc -us \  
   && debuild -uc -us \
   && mkdir -p tmp/debian \
+  && cp -rfva debian tmp/ \
   && cp -av ../${project}_* tmp/debian \
   && make install INSTALL_DIR="${project_dir}" \
   && sync
