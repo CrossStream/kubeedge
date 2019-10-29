@@ -31,6 +31,8 @@ RUN echo "# log: ${project}: Buidling sources" \
   && echo TODO.patch > debian/patches/serie \
   && debuild -S -uc -us \  
   && debuild -uc -us \
+  && mkdir -p tmp/debian
+  && cp -av ../${project}_* tmp/debian \
   && make install INSTALL_DIR="${project_dir}" \
   && sync
 
@@ -43,10 +45,10 @@ COPY --from=kubeedge-builder ${project_dir}/ ${project_dir}/
 
 # TODO
 ENV src_dir /usr/local/src/${project}/
-COPY --from=kubeedge-builder ${src_dir}/../${project}_* ${src_dir}/debian/
+COPY --from=kubeedge-builder ${src_dir}/tmp/debian ${src_dir}/tmp/debian/
 RUN echo "# log: ${project}: Installing" \
  && set -x \
- && sudo dpkg -i ${src_dir}/debian/${project}_*.deb \
+ && sudo dpkg -i ${src_dir}/tmp/debian/${project}_*.deb \
  && echo "TODO: remove files" \
  && find ${src_dir}/debian -exec echo 'rm {} # TODO' \; \
  && sync
