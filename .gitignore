@@ -14,3 +14,8 @@ edge/edgecore
 edgesite/edgesite
 keadm/keadm
 _output
+
+debian/.debhelper/
+debian/debhelper-build-stamp
+debian/kubeedge.substvars
+debian/kubeedge/
