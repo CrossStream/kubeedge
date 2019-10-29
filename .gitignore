@@ -18,3 +18,11 @@ keadm/keadm
 _output
 
 **/tmp
+
+debian/.debhelper/
+debian/debhelper-build-stamp
+debian/files
+debian/kubeedge*.substvars
+debian/kubeedge*/
+debian/tmp/
+
