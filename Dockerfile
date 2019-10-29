@@ -7,15 +7,15 @@ ENV src_dir /usr/local/src/${project}
 RUN echo "# log: Setup system" \
   && apt-get update \
   && apt-get install -y \
-    make sudo bash git gcc \
+    make bash git gcc \
   && sync
 
 COPY Makefile ${src_dir}/
 WORKDIR ${src_dir}
 RUN echo "# log: ${project}: Preparing sources" \
   && set -x \
-  && sudo apt-get update  \
-  && sudo apt-get install -y \
+  && apt-get update  \
+  && apt-get install -y \
      devscripts \
   && ln -fs /usr/local/go/bin/go /usr/bin/ \
   && sync
@@ -48,7 +48,7 @@ ENV src_dir /usr/local/src/${project}/
 COPY --from=kubeedge-builder ${src_dir}/tmp/debian ${src_dir}/tmp/debian/
 RUN echo "# log: ${project}: Installing" \
  && set -x \
- && sudo dpkg -i ${src_dir}/tmp/debian/${project}_*.deb \
+ && dpkg -i ${src_dir}/tmp/debian/${project}_*.deb \
  && echo "TODO: remove files" \
  && find ${src_dir}/debian -exec echo 'rm {} # TODO' \; \
  && sync
