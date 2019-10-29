@@ -1,0 +1,33 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# ex: set tabstop=4 noexpandtab:
+#{
+# Copyright 2019 Samsung Electronics France SAS
+#}
+
+export DH_VERBOSE = 1
+
+%:
+	dh $@
+
+version?=$(shell [ -r debian/changelog ] \
+  && which dpkg-parsechangelog > /dev/null 2>&1 \
+  && dpkg-parsechangelog | grep "Version:" | sed -e "s/Version: \(.*\)-.*/\1/g" \
+  || echo "0.0")
+
+tarball?=${CURDIR}/../${project}_${version}.orig.tar.xz
+
+${tarball}:
+	 tar cvfJ "$@" \
+--transform "s|^./|${project}-${version}/|" \
+--exclude 'debian' \
+--exclude-vcs \
+.
+	@ls -l $@
+
+rule/tarball: ${tarball}
+	@ls $^
+
+rule/dist: rule/tarball
+	sync
+

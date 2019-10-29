@@ -1,0 +1,5 @@
+kubeedge (0.0.0-1) unstable; urgency=medium
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Philippe Coval <p.coval@samsung.com>  Mon, 28 Oct 2019 16:46:25 +0000
