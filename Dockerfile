@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright: 2019-present Samsung Electronics France SAS, and other contributors
 
-FROM golang:1.12-buster AS kubeedge-builder
+FROM golang:1.12-buster
 LABEL maintainer "Philippe Coval (p.coval@samsung.com)"
 
 RUN echo "# log: Setup system" \
@@ -18,15 +18,19 @@ ENV src_dir /usr/local/src/${project}
 WORKDIR ${src_dir}
 COPY . ${src_dir}/
 
-RUN echo "# log: ${project}: Buidling sources" \
+RUN echo "# log: ${project}: Preparing sources" \
   && set -x \
-  && go version \
-  && make V=1 \
-  && make install INSTALL_DIR="${project_dir}" V=1 \
+  && apt-get update  \
+  && apt-get install -y \
+     devscripts \
+  && ln -fs /usr/local/go/bin/go /usr/bin/ \
   && sync
 
-FROM debian:buster
-LABEL maintainer "Philippe Coval (p.coval@samsung.com)"
-ENV project kubeedge
-ENV project_dir /usr/local/opt/${project}
-COPY --from=kubeedge-builder ${project_dir}/ ${project_dir}/
+COPY . ${src_dir}/
+RUN echo "# log: ${project}: Buidling sources" \
+  && set -x \
+  && make -f ./debian/rules rule/dist \
+  && debuild -S -uc -us \  
+  && debuild -uc -us \
+  && debi \
+  && sync
