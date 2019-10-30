@@ -22,10 +22,11 @@ RUN echo "# log: ${project}: Preparing sources" \
   && go version \
   && sync
 
+# git archive HEAD .  | xz - > ../kubeedge_0.0.0.orig.tar.xz 
+
 COPY . ${src_dir}/
 RUN echo "# log: ${project}: Buidling sources" \
   && set -x \
-  && git archive HEAD .  | xz - > ../kubeedge_0.0.0.orig.tar.xz \
   && make -f ./debian/rules rule/dist \
   && debuild -S -uc -us || { echo 'TODO.patch' | dpkg-source --commit ; } ||: \
   && debuild -S -uc -us \  
