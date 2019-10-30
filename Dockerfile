@@ -1,4 +1,4 @@
-FROM debian:testing AS kubeedge-builder
+FROM debian:unstable AS kubeedge-builder
 LABEL maintainer "Philippe Coval (p.coval@samsung.com)"
 ENV project kubeedge
 ENV project_dir /usr/local/opt/${project}
@@ -19,6 +19,7 @@ RUN echo "# log: ${project}: Preparing sources" \
      devscripts \
      debhelper \
      golang-go \
+  && go version \
   && sync
 
 COPY . ${src_dir}/
@@ -35,7 +36,7 @@ RUN echo "# log: ${project}: Buidling sources" \
   && make install INSTALL_DIR="${project_dir}" \
   && sync
 
-FROM debian:testing
+FROM debian:unstable
 LABEL maintainer "Philippe Coval (p.coval@samsung.com)"
 ENV project kubeedge
 ENV project_dir /usr/local/opt/${project}
