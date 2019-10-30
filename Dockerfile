@@ -1,4 +1,4 @@
-FROM ubuntu:19.10 AS kubeedge-builder
+FROM debian:testing AS kubeedge-builder
 LABEL maintainer "Philippe Coval (p.coval@samsung.com)"
 ENV project kubeedge
 ENV project_dir /usr/local/opt/${project}
@@ -35,7 +35,7 @@ RUN echo "# log: ${project}: Buidling sources" \
   && make install INSTALL_DIR="${project_dir}" \
   && sync
 
-FROM ubuntu:19.10
+FROM debian:testing
 LABEL maintainer "Philippe Coval (p.coval@samsung.com)"
 ENV project kubeedge
 ENV project_dir /usr/local/opt/${project}
