@@ -21,3 +21,12 @@ Description: Kubernetes Native Edge Computing Framework
  It is built upon kubernetes and provides fundamental infrastructure support
  for network, app deployment and metadata synchronization between cloud and edge
  .
+
+Package: kubeedge-snapshot
+Architecture: all
+Section: utils
+Depends: ${misc:Depends}, kubeedge (= ${source:Version})
+Priority: extra
+Description: unreleased snapshot version
+ TODO: Remove on issue and upgrade kubeedge
+ .
