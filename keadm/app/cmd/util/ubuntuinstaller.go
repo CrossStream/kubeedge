@@ -31,6 +31,8 @@ const downloadRetryTimes int = 3
 const (
 	UbuntuXenial = "xenial"
 	UbuntuBionic = "bionic"
+	UbuntuDisco = "disco"
+	UbuntuEoan = "eoan"
 )
 
 //UbuntuOS struct objects shall have information of the tools version to be installed
@@ -121,6 +123,9 @@ func (u *UbuntuOS) addDockerRepositoryAndUpdate() error {
 	fmt.Println(curlOutput)
 
 	//Add the repo in OS source.list
+	if distVersion == UbuntuEoan {
+		distVersion = UbuntuDisco
+	}
 	aptRepo := fmt.Sprintf("deb [arch=$(dpkg --print-architecture)] %s/linux/%s %s stable", DefaultDownloadURL, UbuntuOSType, distVersion)
 	updtRepo := fmt.Sprintf("echo \"%s\" > /etc/apt/sources.list.d/docker.list", aptRepo)
 	cmd = &Command{Cmd: exec.Command("sh", "-c", updtRepo)}
@@ -301,7 +306,7 @@ func (u *UbuntuOS) addK8SRepositoryAndUpdate() error {
 	}
 	fmt.Println("Ubuntu distribution version is", distVersion)
 	distVersionForSuite := distVersion
-	if distVersion == UbuntuBionic {
+	if distVersion != UbuntuXenial {
 		// No bionic-specific version is available on apt.kubernetes.io.
 		// Use xenial version instead.
 		distVersionForSuite = UbuntuXenial
