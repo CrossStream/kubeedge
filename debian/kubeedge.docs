@@ -1,0 +1,7 @@
+vendor/github.com/containerd/containerd/NOTICE 
+vendor/github.com/containerd/containerd/NOTICE
+vendor/github.com/docker/docker/NOTICE
+vendor/github.com/go-chassis/go-chassis/NOTICE
+vendor/github.com/opencontainers/runc/NOTICE
+vendor/github.com/prometheus/client_golang/NOTICE
+vendor/gopkg.in/yaml.v2/NOTICE
