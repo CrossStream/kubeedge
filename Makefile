@@ -1,7 +1,17 @@
+project?=kubeedge
 DESTDIR?=
 USR_DIR?=/usr/local
 INSTALL_DIR?=${DESTDIR}${USR_DIR}
 INSTALL_BIN_DIR?=${INSTALL_DIR}/bin
+INSTALL_EXT_DIR?=${INSTALL_DIR}/lib/${project}
+INSTALL_SHARE_DIR?=${INSTALL_DIR}/share/${project}
+INSTALL_ETC_DIR?=${DESTDIR}/etc/${project}
+
+share_files+=$(shell find \
+	cloud/conf \
+	edge/conf \
+	-type f -iname "*.yaml" \
+	| sort)
 
 # make all builds both cloud and edge binaries
 .PHONY: all  
@@ -171,5 +181,22 @@ install-binaries: ${exes}
 	install -d ${INSTALL_BIN_DIR}
 	install $^ ${INSTALL_BIN_DIR}
 
-install: install-binaries
+install-share: ${share_files}
+	for file in $^ ; do \
+install -d ${INSTALL_SHARE_DIR}/$${file}.tmp ; \
+rmdir ${INSTALL_SHARE_DIR}/$${file}.tmp ; \
+install -m 644 $${file} ${INSTALL_SHARE_DIR}/$${file} ; \
+done
+
+install-ext: build/tools/certgen.sh
+	install -d ${INSTALL_EXT_DIR}/bin
+	install $< ${INSTALL_EXT_DIR}/bin/
+
+install-links:
+	install -d ${INSTALL_ETC_DIR}
+	ln -fs /usr/lib/${project}/certgen.sh ${INSTALL_ETC_DIR}/
+	ln -fs /usr/share/${project}/cloud ${INSTALL_ETC_DIR}/
+	ln -fs /usr/share/${project}/edge ${INSTALL_ETC_DIR}/
+
+install: install-binaries install-share install-ext install-links
 	-sync
