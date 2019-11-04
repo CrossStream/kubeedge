@@ -1,0 +1,6 @@
+/etc/kubeedge/*
+/usr/bin/*
+/usr/lib/kubeedge/bin/*
+/usr/share/kubeedge/*
+/usr/share/kubeedge/*/*
+/usr/share/kubeedge/*/*/*
