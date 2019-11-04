@@ -183,7 +183,7 @@ On the console output, observe the below line
 
 kubeadm join **192.168.20.134**:6443 --token 2lze16.l06eeqzgdz8sfcvh \
          --discovery-token-ca-cert-hash sha256:1e5c808e1022937474ba264bb54fea42b05eddb9fde2d35c9cad5b83cf5ef9ac  
-After Kubeedge init ,please note the **cloudIP** as highlighted above generated from console output and port is **8080**.
+After Kubeedge init, please note the **cloudIP** as highlighted above generated from console output and port is **8080**.
 
 ### 2. Manually copy certs.tgz from cloud host to edge host(s)
 
