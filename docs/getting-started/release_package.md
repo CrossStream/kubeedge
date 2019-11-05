@@ -92,7 +92,7 @@
 **NOTE:** scp kubeedge folder from cloud vm to edge vm
    
    ```shell
-   In cloud
+   # In cloud
    scp -r /etc/kubeedge root@edgeip:/etc
    ```
    ### Configuring MQTT mode
@@ -140,7 +140,6 @@
            ./edgecore
            # or
            nohup ./edgecore > edgecore.log 2>&1 &
-          
    ```
     **Note**: Running edgecore on ARM based processors,follow the above steps as mentioned for Edge Vm
    ```shell
