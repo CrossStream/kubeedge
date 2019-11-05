@@ -40,5 +40,16 @@ ENV pkg_dir ${project_dir}/dist/pkgs
 COPY --from=kubeedge-builder ${pkg_dir} ${pkg_dir}
 RUN echo "# log: ${project}: Installing" \
  && set -x \
- && dpkg -i "${pkg_dir}/"*".deb" \
+ && apt-get update \
+ && apt-get install -y apt-transport-https curl \
+ && curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
+ && echo 'deb https://apt.kubernetes.io/ kubernetes-xenial main' \
+ | tee /etc/apt/sources.list.d/kubernetes.list \
+ && apt-get update \
+ && apt-get install -y \
+kubeadm=1.14.1-00 \
+kubelet=1.14.1-00 \
+ && apt install "${pkg_dir}/"*".deb" \
+ && apt-get clean \
+ && rm -rf /var/cache/apt \
  && sync
