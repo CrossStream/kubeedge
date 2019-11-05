@@ -10,7 +10,11 @@ Vcs-Git: https://github.com/tizenteam/kubeedge.git
 
 Package: kubeedge
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends},
+ docker-ce (=18.06.0~ce~3-0~ubuntu),
+ kubeadm (=1.14.1-00),
+ kubelet (=1.14.1-00),
+ kubernetes-cni (0.7.5-00)
 Description: Kubernetes Native Edge Computing Framework
  KubeEdge is an open source system for extending
  native containerized application orchestration capabilities to hosts at Edge
