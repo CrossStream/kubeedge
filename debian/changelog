@@ -1,3 +1,9 @@
+kubeedge (0.0.0+v1.1.0+beta.0+178+gc6a5aa73-0~rzr0+v1.1.0+beta.0+197+g0008a829) unstable; urgency=medium
+
+  * WIP: Rebase on upstream
+
+ -- Philippe Coval <p.coval@samsung.com>  Tue, 05 Nov 2019 18:42:28 +0100
+
 kubeedge (0.0.0-1) unstable; urgency=medium
 
   * Work in progress
