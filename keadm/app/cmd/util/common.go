@@ -32,7 +32,7 @@ import (
 
 //Constants used by installers
 const (
-	InstallersOnline = true
+	InstallersOnline = false
 
 	UbuntuOSType = "ubuntu"
 	CentOSType   = "centos"
