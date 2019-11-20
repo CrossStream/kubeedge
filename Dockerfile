@@ -52,4 +52,5 @@ kubelet=1.14.1-00 \
  && apt install "${pkg_dir}/"*".deb" \
  && apt-get clean \
  && rm -rf /var/cache/apt \
+ && rm -rf "${pkg_dir}" \
  && sync
