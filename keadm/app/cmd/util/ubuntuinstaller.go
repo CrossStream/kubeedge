@@ -125,7 +125,7 @@ func (u *UbuntuOS) addDockerRepositoryAndUpdate() error {
 	//Add the repo in OS source.list
 	if distVersion == UbuntuEoan {
 		distVersion = UbuntuDisco
-		dockerVersion = "19.03.0"
+		u.SetDockerVersion("19.03.0")
 	}
 	aptRepo := fmt.Sprintf("deb [arch=$(dpkg --print-architecture)] %s/linux/%s %s stable", DefaultDownloadURL, UbuntuOSType, distVersion)
 	updtRepo := fmt.Sprintf("echo \"%s\" > /etc/apt/sources.list.d/docker.list", aptRepo)
