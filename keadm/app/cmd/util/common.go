@@ -45,7 +45,7 @@ const (
 	KubeEdgePath              = "/etc/kubeedge/"
 	KubeEdgeUsrBinPath        = "/usr/bin"
 	KubeEdgeConfPath          = KubeEdgePath + "kubeedge/edge/conf"
-	KubeEdgeBinaryName        = "edgecore"
+	KubeEdgeBinaryName        = "edge_core"
 	KubeEdgeDefaultCertPath   = KubeEdgePath + "certs/"
 	KubeEdgeConfigEdgeYaml    = KubeEdgeConfPath + "/edge.yaml"
 	KubeEdgeConfigNodeJSON    = KubeEdgeConfPath + "/node.json"
