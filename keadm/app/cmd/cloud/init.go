@@ -38,7 +38,7 @@ keadm init
 
 - This command will download and install the default version of pre-requisites and KubeEdge
 
-keadm init --kubeedge-version=0.2.1 --kubernetes-version=1.14.1 --docker-version=18.06.3 --kube-config=~/.kube/config
+keadm init --kubeedge-version=1.1.0 --kubernetes-version=1.14.1 --docker-version=18.06.3 --kube-config=~/.kube/config
 
   - In case, any flag is used in a format like "--docker-version" or "--docker-version=" (without a value)
     then default versions shown in help will be chosen. 
